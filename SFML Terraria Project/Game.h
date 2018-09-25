@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
+
 class Game : public sf::Drawable
 {
 public:
@@ -11,6 +13,6 @@ public:
 
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
+	Entity player;
 };
 
