@@ -15,14 +15,20 @@ Entity::~Entity()
 {
 }
 
-void Entity::movementX(float xMovement)
+void Entity::movementX(float moveX)
 {
-	this->moveX = xMovement;
+	this->moveX = moveX;
 }
 
-void Entity::movementY(float yMovement)
+void Entity::movementY(float moveY)
 {
-	this->moveY = yMovement;
+	this->moveY = moveY;
+}
+
+void Entity::movementXY(float moveX, float moveY)
+{
+	this->moveX = moveX;
+	this->moveY = moveY;
 }
 
 void Entity::movement()

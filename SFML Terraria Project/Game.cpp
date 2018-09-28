@@ -38,6 +38,7 @@ void Game::Update(sf::Time dt)
 
 	
 	player.movement();
+	player.movementXY(0.0, 0.0);
 }
 
 void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
