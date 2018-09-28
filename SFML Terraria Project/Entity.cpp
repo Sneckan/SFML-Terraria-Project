@@ -1,11 +1,13 @@
 #include "Entity.h"
-
+#include <iostream>
 
 
 Entity::Entity()
 {
 	rect.setSize(sf::Vector2f(20.0, 20.0));
 	rect.setFillColor(sf::Color::Blue);
+	this->moveX = 0.0;
+	this->moveY = 0.0;
 }
 
 
@@ -13,14 +15,19 @@ Entity::~Entity()
 {
 }
 
-void Entity::moveX(float xMovement)
+void Entity::movementX(float xMovement)
 {
-	rect.move(sf::Vector2f(xMovement, 0.0));
+	this->moveX = xMovement;
 }
 
-void Entity::moveY(float yMovement)
+void Entity::movementY(float yMovement)
 {
-	rect.move(sf::Vector2f(0.0, yMovement));
+	this->moveY = yMovement;
+}
+
+void Entity::movement()
+{
+	this->rect.move(sf::Vector2f(this->moveX, this->moveY));
 }
 
 

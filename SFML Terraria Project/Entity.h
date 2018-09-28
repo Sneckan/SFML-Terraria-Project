@@ -7,11 +7,14 @@ public:
 	Entity();
 	~Entity();
 
-	void moveX(float xMovement);
-	void moveY(float yMovement);
+	void movementX(float xMovement);
+	void movementY(float yMovement);
+	void movement();
 
 private:
 	sf::RectangleShape rect;
+	float moveX;
+	float moveY;
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
