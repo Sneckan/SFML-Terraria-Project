@@ -10,6 +10,13 @@ Entity::Entity()
 	this->moveY = 0.0;
 }
 
+Entity::Entity(sf::RectangleShape rect)
+{
+	this->rect = rect;
+	this->moveX = 0.0;
+	this->moveY = 0.0;
+}
+
 
 Entity::~Entity()
 {
@@ -34,6 +41,21 @@ void Entity::movementXY(float moveX, float moveY)
 void Entity::movement()
 {
 	this->rect.move(sf::Vector2f(this->moveX, this->moveY));
+}
+
+sf::RectangleShape Entity::getRect()
+{
+	return this->rect;
+}
+
+int Entity::getX()
+{
+	return rect.getPosition().x;
+}
+
+int Entity::getY()
+{
+	return rect.getPosition().y;
 }
 
 

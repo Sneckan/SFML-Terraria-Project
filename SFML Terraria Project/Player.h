@@ -1,0 +1,14 @@
+#pragma once
+#include "Entity.h"
+class Player :
+	public Entity
+{
+public:
+	Player();
+	~Player();
+
+private:
+	int Health;
+	int direction;
+};
+

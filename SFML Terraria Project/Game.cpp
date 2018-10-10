@@ -3,7 +3,7 @@
 
 Game::Game()
 {
-
+	enemy.setPos(sf::Vector2f(player.getX() + 100, player.getY() + 100));
 }
 
 
@@ -35,7 +35,10 @@ void Game::Update(sf::Time dt)
 	}
 
 
+	
+	
 
+	
 	
 	player.movement();
 	player.movementXY(0.0, 0.0);
@@ -44,5 +47,6 @@ void Game::Update(sf::Time dt)
 void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	target.draw(player);
+	target.draw(enemy);
 }
 
