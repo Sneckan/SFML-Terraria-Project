@@ -6,6 +6,8 @@ class Player :
 public:
 	Player();
 	~Player();
+	void setDirection(int direction);
+	int getDirection();
 
 private:
 	int Health;

@@ -6,12 +6,14 @@ Projectile::Projectile()
 {
 	projectile.setSize(sf::Vector2f(10.0,10.0));
 	projectile.setFillColor(sf::Color::Green);
+	this->direction = 1;
 }
 
-Projectile::Projectile(sf::Vector2f size)
+Projectile::Projectile(int direction)
 {
-	projectile.setSize(size);
+	projectile.setSize(sf::Vector2f(10.0, 10.0));
 	projectile.setFillColor(sf::Color::Green);
+	this->direction = direction;
 }
 
 
@@ -19,9 +21,30 @@ Projectile::~Projectile()
 {
 }
 
-void Projectile::fire(int speed)
+void Projectile::fire()
 {
-	projectile.move(speed, 0);
+	switch (direction)
+	{
+	default:
+		break;
+
+	case 1:
+		projectile.move(1, 0);
+		break;
+
+	case 2:
+		projectile.move(0, -1);
+		break;
+
+	case 3:
+		projectile.move(-1, 0);
+		break;
+		
+	case 4:
+		projectile.move(0, 1);
+		break;
+
+	}
 }
 
 int Projectile::getRight()
@@ -44,9 +67,10 @@ int Projectile::getBot()
 	return projectile.getPosition().y + projectile.getSize().y;
 }
 
-void Projectile::draw(sf::RenderWindow & window)
+
+void Projectile::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	window.draw(projectile);
+	target.draw(projectile, states);
 }
 
 void Projectile::setPos(sf::Vector2f newPos)

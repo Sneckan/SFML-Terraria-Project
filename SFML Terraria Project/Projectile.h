@@ -1,26 +1,29 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class Projectile
+class Projectile : public sf::Drawable
 {
 public:
 	Projectile();
 
-	Projectile(sf::Vector2f size);
+	Projectile(int direction);
 
 	~Projectile();
 
-	void fire(int speed);
+	void fire();
 
 	int getRight();
 	int getLeft();
 	int getTop();
 	int getBot();
 
-	void draw(sf::RenderWindow &window);
+
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
+
 	void setPos(sf::Vector2f newPos);
 
 private:
 	sf::RectangleShape projectile;
+	int direction;
 };
 

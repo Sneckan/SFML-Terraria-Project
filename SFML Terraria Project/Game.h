@@ -20,5 +20,6 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	Player player;
 	Enemy enemy;
+	std::vector<Projectile> projectiles;
 };
 
