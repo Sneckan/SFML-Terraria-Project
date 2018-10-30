@@ -6,6 +6,7 @@ class Entity : public sf::Drawable
 public:
 	Entity();
 	Entity(sf::RectangleShape rect);
+	Entity(sf::Color color,sf::Vector2f size);
 	~Entity();
 
 	void movementX(float xMovement);
@@ -13,14 +14,19 @@ public:
 	void movementXY(float xMovement, float yMovement);
 	void movement();
 
-	sf::RectangleShape getRect();
 	int getX();
 	int getY();
 
-private:
+	sf::Vector2f getPos();
+	sf::Vector2f getSize();
+
+protected:
 	sf::RectangleShape rect;
 	float moveX;
 	float moveY;
+
+private:
+	
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 

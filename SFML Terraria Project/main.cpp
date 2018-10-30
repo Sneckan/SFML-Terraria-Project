@@ -1,10 +1,15 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+#include <string>
+#include <sstream>
+
 
 int main()
 {
-	Game game;
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+	int windowX = 800;
+	int windowY = 600;
+	Game game(windowX,windowY);
+	sf::RenderWindow window(sf::VideoMode(windowX, windowY), "SFML works!");
 	sf::Clock gameTime;
 
 	while (window.isOpen())
@@ -20,6 +25,7 @@ int main()
 		window.clear();
 		window.draw(game);
 		window.display();
+
 	}
 
 	return 0;

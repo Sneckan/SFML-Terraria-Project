@@ -1,10 +1,21 @@
 #include "Game.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 
 Game::Game()
 {
 	enemy.setPos(sf::Vector2f(player.getX() + 100, player.getY() + 100));
+	this->windowX = 800;
+	this->windowY = 600;
+}
+
+Game::Game(int windowX, int windowY)
+{
+	enemy.setPos(sf::Vector2f(player.getX() + 100, player.getY() + 100));
+	this->windowX = windowX;
+	this->windowY = windowY;
 }
 
 
@@ -57,13 +68,28 @@ void Game::Update(sf::Time dt)
 	for (int i = 0; i < projectiles.size(); i++)
 	{
 		projectiles[i].fire();
-		if (projectiles[i].getLeft() >= 800 || projectiles[i].getRight() <= 0 || projectiles[i].getBot() <= 0 || projectiles[i].getTop() >= 600)
+		
+		if (projectiles[i].getLeft() >= windowX || projectiles[i].getRight() <= 0 || projectiles[i].getBot() <= 0 || projectiles[i].getTop() >= windowY)
 		{
 			projectiles.erase(projectiles.begin()+i);
 		}
+
+		else if (enemy.checkCollision(projectiles[i]))
+		{
+			std::srand(std::time(nullptr));
+			float randX = std::rand()%this->windowX;
+			float randY = std::rand()%this->windowY;
+			enemy.setPos(sf::Vector2f(randX,randY));
+			std::cout << randX << " " << randY <<std::endl;
+
+
+			projectiles.erase(projectiles.begin() + i);
+		}
+
 	}
 
-	std::cout << projectiles.size()<<std::endl;
+
+
 }
 
 void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const

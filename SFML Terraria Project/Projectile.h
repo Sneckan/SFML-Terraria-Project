@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
 
-class Projectile : public sf::Drawable
+class Projectile : public /*sf::Drawable,*/ Entity
 {
 public:
 	Projectile();
@@ -18,7 +19,6 @@ public:
 	int getBot();
 
 
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
 	void setPos(sf::Vector2f newPos);
 

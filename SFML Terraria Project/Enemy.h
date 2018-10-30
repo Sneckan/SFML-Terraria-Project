@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Projectile.h"
+#include "Entity.h"
 
 class Enemy :public sf::Drawable
 {
@@ -11,13 +11,12 @@ public:
 
 	void setPos(sf::Vector2f newPos);
 
-	void checkCollision(Projectile projectile);
+	bool checkCollision(Entity entity);
 
 	
 
 private:
 	sf::RectangleShape enemy;
-
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 

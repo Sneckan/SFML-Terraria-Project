@@ -17,6 +17,14 @@ Entity::Entity(sf::RectangleShape rect)
 	this->moveY = 0.0;
 }
 
+Entity::Entity(sf::Color color, sf::Vector2f size)
+{
+	this->rect.setFillColor(color);
+	this->rect.setSize(size);
+	this->moveX = 0.0;
+	this->moveY = 0.0;
+}
+
 
 Entity::~Entity()
 {
@@ -43,11 +51,6 @@ void Entity::movement()
 	this->rect.move(sf::Vector2f(this->moveX, this->moveY));
 }
 
-sf::RectangleShape Entity::getRect()
-{
-	return this->rect;
-}
-
 int Entity::getX()
 {
 	return rect.getPosition().x;
@@ -56,6 +59,16 @@ int Entity::getX()
 int Entity::getY()
 {
 	return rect.getPosition().y;
+}
+
+sf::Vector2f Entity::getPos()
+{
+	return rect.getPosition();
+}
+
+sf::Vector2f Entity::getSize()
+{
+	return rect.getSize();
 }
 
 

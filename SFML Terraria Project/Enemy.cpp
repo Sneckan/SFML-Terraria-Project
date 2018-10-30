@@ -24,15 +24,21 @@ void Enemy::setPos(sf::Vector2f newPos)
 	enemy.setPosition(newPos);
 }
 
-void Enemy::checkCollision(Projectile projectile)
+bool Enemy::checkCollision(Entity entity)
 {
-	if (projectile.getRight() > enemy.getPosition().x &&
-		projectile.getTop() < enemy.getPosition().y + enemy.getSize().y  &&
-		projectile.getBot() > enemy.getPosition().y)
+	if (entity.getPos().x + entity.getSize().x > enemy.getPosition().x &&
+		entity.getPos().y < enemy.getPosition().y + enemy.getSize().y  &&
+		entity.getPos().y+entity.getSize().y > enemy.getPosition().y &&
+		entity.getPos().x < enemy.getPosition().x + enemy.getSize().x)
 	{
-		enemy.setPosition(sf::Vector2f(10000.0, 10000.0));
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
+
 
 void Enemy::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
