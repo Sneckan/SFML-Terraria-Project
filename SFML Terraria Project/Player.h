@@ -5,6 +5,7 @@ class Player :
 {
 public:
 	Player();
+	Player(float movementSpeed);
 	~Player();
 	void setDirection(int direction);
 	int getDirection();

@@ -7,6 +7,12 @@ Player::Player()
 	this->direction = 1;
 }
 
+Player::Player(float movementSpeed):Entity(movementSpeed)
+{
+}
+
+
+
 
 Player::~Player()
 {

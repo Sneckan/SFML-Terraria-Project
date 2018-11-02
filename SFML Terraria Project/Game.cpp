@@ -6,6 +6,7 @@
 
 Game::Game()
 {
+	this->player.setMovementSpeed(3.0);
 	enemy.setPos(sf::Vector2f(player.getX() + 100, player.getY() + 100));
 	this->windowX = 800;
 	this->windowY = 600;
@@ -13,6 +14,7 @@ Game::Game()
 
 Game::Game(int windowX, int windowY)
 {
+	this->player.setMovementSpeed(5.0);
 	enemy.setPos(sf::Vector2f(player.getX() + 100, player.getY() + 100));
 	this->windowX = windowX;
 	this->windowY = windowY;
@@ -28,26 +30,44 @@ void Game::Update(sf::Time dt)
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		player.movementX(1.0 * (dt.asSeconds() * 60));
+		player.movementX(1 * (dt.asSeconds() * 60));
 		player.setDirection(1);
+		if (player.getX() >= windowX)
+		{
+			player.setPosX(0-player.getSize().x);
+		}
 	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		player.movementX(-1.0 * (dt.asSeconds() * 60));
 		player.setDirection(3);
+		if (player.getX()+player.getSize().x <= 0)
+		{
+			player.setPosX(windowX);
+		}
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		player.movementY(1.0 * (dt.asSeconds() * 60));
 		player.setDirection(4);
+
+		if(player.getY()>=windowY)
+		{
+			player.setPosY(0 - player.getSize().y);
+		}
 	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		player.movementY(-1.0 * (dt.asSeconds() * 60));
 		player.setDirection(2);
+
+		if(player.getY() + player.getSize().y <= 0)
+		{
+			player.setPosY(windowY);
+		}
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -56,11 +76,6 @@ void Game::Update(sf::Time dt)
 		projectile.setPos(sf::Vector2f(player.getX(), player.getY()));
 		projectiles.push_back(projectile);
 	}
-
-	
-	
-
-	
 	
 	player.movement();
 	player.movementXY(0.0, 0.0);
@@ -74,7 +89,7 @@ void Game::Update(sf::Time dt)
 			projectiles.erase(projectiles.begin()+i);
 		}
 
-		else if (enemy.checkCollision(projectiles[i]))
+		else if (projectiles[i].checkCollision(enemy))
 		{
 			std::srand(std::time(nullptr));
 			float randX = std::rand()%this->windowX;
@@ -85,7 +100,6 @@ void Game::Update(sf::Time dt)
 
 			projectiles.erase(projectiles.begin() + i);
 		}
-
 	}
 
 

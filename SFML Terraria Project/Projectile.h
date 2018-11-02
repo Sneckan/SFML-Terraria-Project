@@ -23,7 +23,6 @@ public:
 	void setPos(sf::Vector2f newPos);
 
 private:
-	sf::RectangleShape projectile;
 	int direction;
 };
 

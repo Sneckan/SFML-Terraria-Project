@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 
-class Enemy :public sf::Drawable
+class Enemy :public Entity
 {
 public:
 	Enemy();
@@ -11,14 +11,10 @@ public:
 
 	void setPos(sf::Vector2f newPos);
 
-	bool checkCollision(Entity entity);
 
 	
 
 private:
-	sf::RectangleShape enemy;
-
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
 };
 
